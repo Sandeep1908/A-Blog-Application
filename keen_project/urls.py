@@ -18,5 +18,8 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('app.urls'))
+    path('',include('app.urls')),
+    path('api/',include('app.urls_api')),
+    path('froala_editor/',include('froala_editor.urls'))
+    
 ]

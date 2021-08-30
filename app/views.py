@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.contrib.auth import logout
+from django.http.response import JsonResponse
+from django.shortcuts import redirect, render
+import io
+from rest_framework.parsers import JSONParser
 
 # Create your views here.
 def home(request):
@@ -10,3 +14,7 @@ def login_view(request):
 
 def register_view(request):
     return render(request,'app/register.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('/login')
