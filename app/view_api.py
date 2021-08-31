@@ -3,6 +3,10 @@ from django.http.response import JsonResponse
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
+from .models import profile
+import uuid
+
+
 
 class login_api(APIView):
     def post(self,request):
@@ -13,6 +17,12 @@ class login_api(APIView):
             check_user=User.objects.filter(username=request.data.get('email')).first()
             if check_user is None:
                 response['message']='User not found'
+            
+            Profile=profile.objects.filter(user=check_user).first()
+            if not Profile.is_varified:
+                response['message']='Profile is not varified'
+                return JsonResponse(response)  
+            
             
             user=authenticate(username=request.data.get('email'),password=request.data.get('password'))
             if user is not None:
@@ -45,6 +55,10 @@ class register_api(APIView):
             user=User.objects.create(username=data.get('username'),email=data.get('email'))
             user.set_password(data.get('password'))  
             user.save()
+
+            token=str(uuid.uuid4())
+            Profile=profile.objects.create(user=user,token=token)
+            Profile.save()
             response['message']='User created'         
             response['status']=200
 

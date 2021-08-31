@@ -1,10 +1,9 @@
 from django.contrib.auth import logout
-from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
-import io
-from rest_framework.parsers import JSONParser
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required(login_url='/login')
 def home(request):
     return render(request,'app/blog.html')
 

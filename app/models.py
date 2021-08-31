@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.fields.related import ForeignKey
+from django.db.models.fields.related import ForeignKey, OneToOneField
 from froala_editor.fields import FroalaField
 from django.contrib.auth.models import User
 from .helper import *
@@ -20,3 +20,9 @@ class post(models.Model):
     def save(self, *args, **kwargs):
         self.slug = generate(self.title)
         super(post, self).save(*args, **kwargs)
+
+class profile(models.Model):
+    user=OneToOneField(User,on_delete=models.CASCADE)
+    token=models.CharField(max_length=1000)
+    is_varified=models.BooleanField(default=False)
+
