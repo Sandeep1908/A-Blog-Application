@@ -26,3 +26,5 @@ class profile(models.Model):
     token=models.CharField(max_length=1000)
     is_varified=models.BooleanField(default=False)
 
+    
+

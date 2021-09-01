@@ -1,3 +1,4 @@
+from app.helper import send_confirmation
 from django.http import response
 from django.http.response import JsonResponse
 from rest_framework.views import APIView
@@ -21,7 +22,7 @@ class login_api(APIView):
             
             Profile=profile.objects.filter(user=check_user).first()
             if not Profile.is_varified:
-                response['message']='Profile is not varified'
+                response['message']='Profile is not varified..please check your mail'
                 return JsonResponse(response)  
             
             
@@ -60,9 +61,9 @@ class register_api(APIView):
             token=str(uuid.uuid4())
             Profile=profile.objects.create(user=user,token=token)
             Profile.save()
-            response['message']='User created'         
+            send_confirmation(request.data.get('email'),token)
+            response['message']='Sent confirmation email successfully'         
             response['status']=200
-
         except Exception as e:
             print(e)
         return JsonResponse(response)

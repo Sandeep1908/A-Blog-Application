@@ -12,5 +12,6 @@ urlpatterns=[
     path('addpost/',views.addpost,name='addpost'),
     path('edit/',views.edit,name='edit'),
     path('update/<slug>/',views.update,name='update'),
-    path('delete/<int:id>/',views.delete,name='delete')
+    path('delete/<int:id>/',views.delete,name='delete'),
+    path('verify/<token>/',views.verify,name='verify')
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

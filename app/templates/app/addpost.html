@@ -4,7 +4,7 @@ Add Post
 {% endblock %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="container mt-5 mb-5 pb-4">
     <div class="row">
         <div class="col mt-4 ">
             <a href="{% url 'edit' %}" class="btn btn-warning mb-3">Edit Post</a>
@@ -12,9 +12,9 @@ Add Post
                 {{form.media}}
                 {{form.as_p}}
                 <div>
-                    <input type="file" name="image" id="">
+                    <input type="file" name="image" id="" required>
                 </div>
-                <input type="submit" value="Create Blog" class=" btn btn-primary mt-3 mb-4">
+                <input type="submit" value="Create Blog" class=" btn btn-primary mt-5 mb-5 ">
             </form>
         </div>
     </div>

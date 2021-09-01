@@ -17,6 +17,8 @@ Login
 
         <form class="form-validate">
           <div class="form-group">
+            <p id="error"></p>
+
             <label class="form-label" for="loginUsername"> Username</label>
             <input class="form-control" name="email" id="loginUsername" type="email" placeholder="Username"
               autocomplete="off" required data-msg="Please enter your email">
@@ -60,6 +62,7 @@ Login
 
 <script>
   let btn = document.getElementById('btn');
+  let error=document.getElementById('error')
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     let email = document.getElementById('loginUsername').value;
@@ -67,7 +70,10 @@ Login
     let csrf = document.getElementById('csrf').value;
 
     if (email.length == 0 && password.length == 0) {
-      alert('please enter credentials');
+      error.innerHTML=`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error</strong> Please Input credentials !
+      </div>`
+      return;
     }
 
     data = {
@@ -85,7 +91,21 @@ Login
     }).then(res => res.json()).then((result) => {
 
       if (result.status == 200) {
-        window.location.href = '/';
+        error.innerHTML=`<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success: </strong>${result.message}
+      </div>`
+        
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
+        
+      }
+      else
+      {
+        error.innerHTML=`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Error: </strong> ${result.message}
+            </div>`
+
       }
       console.log(result);
       
