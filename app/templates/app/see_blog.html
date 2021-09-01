@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% block title %}
+Blog-Detail
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col">
+            <h1>{{data.title}}</h1>
+            <p>{{data.content|safe}}</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

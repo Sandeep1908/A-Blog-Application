@@ -1,0 +1,23 @@
+{% extends 'app/base.html' %}
+{% block title %}
+Update blog
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{fm.media}}
+            {{fm.as_p}}
+            <div>
+            <input type="file" name="image" value="{{data.image}}" required> 
+            </div>
+            <div>
+                <input type="submit" value="Update" class="btn btn-success mt-3 mb-4 p-2">
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

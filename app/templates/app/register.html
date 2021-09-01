@@ -1,8 +1,11 @@
 {% extends 'app/base.html' %}
 {% block title %}
-Login 
+Sign Up 
 {% endblock %}
-
+{% block btn %}
+<li class="nav-item mt-3 mt-lg-0 ml-lg-3 d-lg-none d-xl-inline-block">
+  <a class="btn btn-primary" href="{% url 'home' %}">Home</a></li>
+{% endblock btn %}
 {% block content %}
     <input type="hidden" value="{{csrf_token}}" id="csrf">
     <div class="container-fluid px-3">
@@ -41,7 +44,7 @@ Login
         </div>
         <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block">
           <!-- Image-->
-          <div class="bg-cover h-100 mr-n3" style="background-image: url(https://images.pexels.com/photos/1995730/pexels-photo-1995730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);"></div>
+          <div class="bg-cover h-100 " style="background-image: url(https://signup.studyportal.io/dist/assets/img/recruiter-signup-min.png);"></div>
         </div>
       </div>
     </div>
